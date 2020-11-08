@@ -4,7 +4,6 @@ import co.com.challenge.challenge.mappers.UsersMapper;
 import co.com.challenge.challenge.models.UsersModel;
 import co.com.challenge.challenge.repositories.UsersRespository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,7 +21,7 @@ public class UsersDao {
 
   public UsersModel findByUsernameUser(final String username) {
     return
-        mapper.UsersEntity_To_Model(
+        mapper.usersEntity_To_Model(
             repository.findByusername(username));
 
   }

@@ -21,7 +21,7 @@ public class UsersMapper {
     facade = factory.getMapperFacade();
   }
 
-  public UsersModel UsersEntity_To_Model(final UsersEntity usersEntity) {
+  public UsersModel usersEntity_To_Model(final UsersEntity usersEntity) {
     return
         facade.map(usersEntity, UsersModel.class);
   }
