@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SatellitesService {
+public class SatellitesService implements ISatellitesService{
 
   private static final Logger LOGGER = Logger.getLogger(SatellitesService.class.getName());
   public static final String ERROR_WHEN_SAVING_THE_SATELLITE_INFORMATION = "error when saving the satellite information";
@@ -27,6 +27,7 @@ public class SatellitesService {
     this.component = component;
   }
 
+  @Override
   public SatellitesResponse getLocation(final SatellitesRequest request) {
     return
         component.getLocationInfo(request);
@@ -37,6 +38,7 @@ public class SatellitesService {
         component.getLocationInfo();
   }
 
+  @Override
   public void setData(SatellitesModel request) {
     Try.run(()->
         SATELLITE_INFO_SINGLETON.setData(request))

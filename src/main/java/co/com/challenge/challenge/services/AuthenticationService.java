@@ -1,7 +1,6 @@
 package co.com.challenge.challenge.services;
 
 import co.com.challenge.challenge.daos.UsersDao;
-import co.com.challenge.challenge.entities.UsersEntity;
 import co.com.challenge.challenge.models.UsersModel;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -16,7 +15,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -57,7 +55,7 @@ public class AuthenticationService implements UserDetailsService {
       UserDetails userAuth) {
     String token = Jwts
         .builder()
-        .setId("Quasar FIre Challenge")
+        .setId("Quasar Fire Challenge")
         .setSubject(userAuth.getUsername())
         .claim("authorities",
             userAuth.getAuthorities().stream()
@@ -88,15 +86,6 @@ public class AuthenticationService implements UserDetailsService {
             usersModel.getUsername(),
             usersModel.getPassword(),
             listGrantedAutority);
-  }
-
-  private List<SimpleGrantedAuthority> getAuthorityList() {
-    List<SimpleGrantedAuthority> authorityList =
-        new ArrayList<>();
-    SimpleGrantedAuthority simpleGrantedAuthority =
-        new SimpleGrantedAuthority("ADMIN");
-    authorityList.add(simpleGrantedAuthority);
-    return authorityList;
   }
 
   private boolean validatePassword(final String cryptedPassword, final String clearPassword) {
